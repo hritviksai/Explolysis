@@ -1,0 +1,45 @@
+.dist-root { display: flex; flex-direction: column; gap: 0; }
+.dist-selector-card { padding: 20px 24px; }
+
+.stats-grid {
+  padding: 20px 24px;
+  margin-top: 16px;
+}
+
+.stats-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stat-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 14px;
+  background: rgba(99,102,241,0.07);
+  border: 1px solid rgba(99,102,241,0.15);
+  border-radius: 10px;
+  min-width: 90px;
+  transition: all 0.2s;
+}
+
+.stat-badge:hover {
+  background: rgba(99,102,241,0.12);
+  border-color: rgba(99,102,241,0.35);
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+}
+
+.stat-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #818cf8;
+  font-family: 'JetBrains Mono', monospace;
+}

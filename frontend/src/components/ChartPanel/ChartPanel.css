@@ -1,0 +1,38 @@
+.chart-panel {
+  width: 100%;
+  background: #0d1117;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chart-skeleton {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-skeleton-icon {
+  font-size: 2rem;
+  opacity: 0.2;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 0.5; }
+}
+
+.chart-error {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(244,63,94,0.05);
+  border: 1px solid rgba(244,63,94,0.15);
+}
+
+.chart-error span { font-size: 1.5rem; }
+.chart-error p    { font-size: 0.875rem; color: #fb7185; }
