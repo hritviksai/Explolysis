@@ -1,9 +1,7 @@
-# Render.com deployment configuration
-# Two services: FastAPI backend (Web Service) + React frontend (Static Site)
+# Render.com Blueprint — Backend only (FastAPI)
+# Frontend is deployed separately on Vercel (see README)
 
 services:
-
-  # ── Backend — FastAPI ────────────────────────────────────
   - type: web
     name: explolysis-backend
     runtime: python
@@ -14,24 +12,8 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: GEMINI_API_KEY
-        sync: false                    # You set this manually in Render dashboard
+        sync: false
       - key: ALLOWED_ORIGINS
-        value: https://explolysis.onrender.com
+        value: https://explolysis.vercel.app
       - key: PYTHON_VERSION
         value: "3.11.0"
-
-  # ── Frontend — React Static Site ────────────────────────
-  - type: static
-    name: explolysis
-    region: oregon
-    plan: free
-    rootDir: frontend
-    buildCommand: npm ci && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://explolysis-backend.onrender.com
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
