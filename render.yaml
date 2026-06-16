@@ -1,40 +1,36 @@
-# Render deployment configuration
-# Deploy backend (FastAPI) as a Web Service
-# Deploy frontend (React) as a Static Site
+# Render.com deployment configuration
+# Two services: FastAPI backend (Web Service) + React frontend (Static Site)
 
 services:
-  # ──────────────────────────────────────────
-  # Backend — FastAPI
-  # ──────────────────────────────────────────
+
+  # ── Backend — FastAPI ────────────────────────────────────
   - type: web
-    name: autoinsight-backend
+    name: explolysis-backend
     runtime: python
     region: oregon
     plan: free
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
-    rootDir: backend
     envVars:
       - key: GEMINI_API_KEY
-        sync: false           # Set this manually in Render dashboard
+        sync: false                    # You set this manually in Render dashboard
       - key: ALLOWED_ORIGINS
-        value: https://autoinsight.onrender.com,https://your-frontend-name.onrender.com
+        value: https://explolysis.onrender.com
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: "3.11.0"
 
-  # ──────────────────────────────────────────
-  # Frontend — React Static Site
-  # ──────────────────────────────────────────
+  # ── Frontend — React Static Site ────────────────────────
   - type: static
-    name: autoinsight-frontend
+    name: explolysis
     region: oregon
     plan: free
+    rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
-    rootDir: frontend
     envVars:
       - key: VITE_API_URL
-        value: https://autoinsight-backend.onrender.com
+        value: https://explolysis-backend.onrender.com
     routes:
       - type: rewrite
         source: /*
